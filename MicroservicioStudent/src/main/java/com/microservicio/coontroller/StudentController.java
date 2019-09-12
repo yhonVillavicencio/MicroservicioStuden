@@ -32,14 +32,20 @@ public class StudentController {
 	
 	@Autowired
 	private StudentRepository servicio;
-	@GetMapping
+	
+	/*@GetMapping
 	public Mono<ResponseEntity<Flux<Student>>> lista(){
 		return Mono.just(
 				ResponseEntity.ok()
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.body(servicio.findAll())
 				);	
+	} */
+	@GetMapping
+	public Flux<Student> listar(){
+		return servicio.findAll();
 	}
+		
 	
 	@PostMapping
 	public Mono<ResponseEntity<Student>> crear(@RequestBody Student student){
